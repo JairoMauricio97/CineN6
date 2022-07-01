@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,6 +70,30 @@ public class Conexion {
 			
 		}
 		
+		public void AgregarUsuario(ArrayList<String> elementos) throws SQLException {
+			System.out.println("Creando Statement");
+			stmt= conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			String sql;
+			
+		
+
+
+			sql="insert into Usuarios (Nombre,Apellido,correo,Dni,pass,idRol,EsFrecuente) "+
+			" values (?,?,?,?,?,?,?)";
+			
+			  PreparedStatement preparedStmt = conn.prepareStatement(sql);
+		    
+		      preparedStmt.setString (1,elementos.get(0) );
+		      preparedStmt.setString (2,elementos.get(1) );
+		      preparedStmt.setString (3,elementos.get(2) );
+		      preparedStmt.setString (4,elementos.get(3) );
+		      preparedStmt.setString (5,elementos.get(4) );
+		      preparedStmt.setInt (6,Integer.parseInt(elementos.get(5) ));
+		      preparedStmt.setInt (7,Integer.parseInt(elementos.get(6)) );
+		      preparedStmt.execute(); 
+		      System.out.print("Registro exitoso");
+		}
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
