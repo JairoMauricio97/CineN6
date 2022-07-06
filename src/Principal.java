@@ -51,10 +51,16 @@ public class Principal {
 				
 			}else {
 				System.out.println("Sos usuario comun");
+				
+				Usuario u=new Usuario(r.getInt("idUsuario"),r.getString("Nombre"),r.getString("Apellido"),
+						r.getString("Correo"),r.getString("Dni"),r.getString("pass"),r.getInt("idRol"),
+						r.getInt("EsFrecuente"));
+				Menu_Usuario menuU=new Menu_Usuario(u);
 			}
 			
 			
 		}else {
+			
 			System.out.print("Usuario y/o contraseña incorrecto");
 		}
 		
